@@ -1,0 +1,43 @@
+let guess = 10;
+let minNumber = 1;
+let maxNumber = 10;
+let secretNumber = Math.floor(Math.random() * (maxNumber - minNumber +1) + minNumber);
+let pastGuess = [];
+
+while (guess > 0)  { 
+  userGuess = prompt(`Guess a number between ${minNumber} and ${maxNumber}!`);
+     
+  if (userGuess == null) {
+        alert("Quitting now.");
+        break;
+    }   
+    
+  else if (isFinite(userGuess) != "") {
+  userGuess = parseInt(userGuess);
+
+    if (userGuess > secretNumber) {
+      pastGuess.unshift(userGuess);
+      alert(`You guess of ${userGuess} is too high. You have ${guess-1} guesses left. You most recent guesses are ${pastGuess.join(', ')}`);
+    
+  }
+
+  else if (userGuess < secretNumber) {
+    pastGuess.unshift(userGuess);
+    alert(`You guess of ${userGuess} is too low. You have ${guess-1} guesses left. You most recent guesses are ${pastGuess.join(', ')}`);
+  }
+
+  else if (userGuess === secretNumber) {
+  alert(`Congratulations. The number is ${secretNumber}`);
+  break;  
+  }
+
+  } else {
+    alert(`Error. You must enter a NUMBER between ${minNumber} and ${maxNumber}`);
+  }
+  --guess; 
+  }
+
+if (guess == 0) {
+  alert(`You suck at this. Please go do something else. The number is ${secretNumber}`);
+}
+
